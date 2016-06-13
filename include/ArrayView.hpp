@@ -660,7 +660,7 @@ public:
         typename Other,
         typename = typename std::enable_if< impl::is_array<Other>::value >::type
     >
-    ArrayReference operator = (Other&& other) {
+    ArrayReference& operator = (Other&& other) {
 #ifndef NDEBUG
         assert(other.size() == this->size());
 #endif
