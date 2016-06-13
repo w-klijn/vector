@@ -5,7 +5,13 @@ project (vector)
 set(CMAKE_EXPORT_COMPILE_COMMANDS "YES")
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+if(MSVC)
+	 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_SCL_SECURE_NO_WARNINGS" )
+	 # D_SCL_SECURE_NO_WARNINGS to supress deprecated copy warning
+	 #SET_TARGET_PROPERTIES(CMAKE_CXX_FLAGS _SCL_SECURE_NO_WARNINGS)
+else()
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+endif()
 
 set(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS)
 

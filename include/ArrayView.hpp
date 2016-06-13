@@ -675,15 +675,17 @@ public:
         return *this;
     }
 
-
-    ArrayReference& operator = (const ArrayReference& other) {
-#ifndef ndebug
+#ifdef _MSC_VER
+    // the operator=() operators are key: they facilitate copying data from
+    // you can make these return an event type, for synchronization
+        ArrayReference& operator = (const ArrayReference& other) {
+#ifndef NDEBUG
         assert(other.size() == this->size());
 #endif
-#ifdef verbose
-        std::cerr << util::type_printer<arrayreference>::print()
+#ifdef VERBOSE
+        std::cerr << util::type_printer<ArrayReference>::print()
             << "::" << util::blue("operator=") << "(&&"
-            << util::type_printer<typename std::decay<other>::type>::print()
+            << util::type_printer<typename std::decay<Other>::type>::print()
             << ")" << std::endl;
 #endif
         base::coordinator_.copy(other, *this);
@@ -691,6 +693,7 @@ public:
         return *this;
     }
 
+#endif
     ArrayReference& operator = (value_type value) {
 #ifdef VERBOSE
         std::cerr << util::pretty_printer<ArrayReference>::print(*this)

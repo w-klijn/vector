@@ -25,7 +25,7 @@ TEST(HostVector, constructor) {
     HostVector<float> v1(100);
 
     // initialize values as monotone sequence
-    for(int i=0; i<v1.size(); ++i)
+    for(unsigned i=0; i<v1.size(); ++i)
         v1[i] = float(i);
 
     // initialize new HostVector from a subrange
@@ -52,7 +52,7 @@ TEST(HostVector, std_vector_constructor) {
 
     HostVector<int> hv(v);
 
-    for(auto i=0; i<hv.size(); ++i) {
+    for(unsigned i=0; i<hv.size(); ++i) {
         EXPECT_EQ(v[i], hv[i]);
     }
 }
@@ -65,7 +65,7 @@ TEST(HostVector, copy_constructor) {
     HostVector<float> v1(100);
 
     // initialize values as monotone sequence
-    for(int i=0; i<v1.size(); ++i)
+    for(unsigned i=0; i<v1.size(); ++i)
         v1[i] = float(i);
 
     // copy constructor

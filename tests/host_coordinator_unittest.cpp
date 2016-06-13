@@ -41,8 +41,6 @@ TEST(HostCoordinator, baserange_alloc_free) {
     auto rng = coordinator.allocate(5);
     typedef decltype(rng) rng_t;
 
-    intcoord_t coord;
-
     // test that range is a base range
     EXPECT_TRUE(impl::is_array_view<rng_t>::value);
 
